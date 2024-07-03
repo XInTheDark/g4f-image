@@ -23,15 +23,15 @@ Generate images for free. That's it.
 ```js
 import { provider, generate } from "g4f-image";
 
-const base64Image = await generate("A cat", {
-    provider: provider.Nexra,
-    options: {
+// syntax: await generate(prompt, provider, options);
+const base64Image = await generate("A cat", provider.Nexra,
+    {
         model: "prodia", // see full list below
         data: {
             model: "ICantBelieveItsNotPhotography_seco.safetensors [4e7a3dfd]", // see the full list below
         },
-    },
-});
+    }
+);
 
 // save image
 let filePath = "...";
