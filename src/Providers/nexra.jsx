@@ -5,9 +5,9 @@ export const getNexraResponse = async (prompt, options, {fetch = global.fetch} =
         throw new Error("Fetch is not defined globally. Please provide a polyfill.");
     }
 
-    let headers = { 'Content-Type': 'application/json' };
+    let headers = {'Content-Type': 'application/json'};
     let model = options.model || "prodia";
-    let data = { prompt: prompt, model: model, data: options.data };
+    let data = {prompt: prompt, model: model, data: options.data};
 
     const response = await fetch(api_url, {
         method: "POST",

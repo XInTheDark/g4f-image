@@ -1,4 +1,4 @@
-import { getNexraResponse } from "./Providers/nexra";
+import {getNexraResponse} from "./Providers/nexra";
 
 export const provider = {
     Nexra: "Nexra",
@@ -6,11 +6,10 @@ export const provider = {
 
 export const default_provider = provider.Nexra;
 
-export const generate = async (prompt= "", provider = default_provider, options = {}) => {
+export const generate = async (prompt = "", provider = default_provider, options = {}, {fetch = global.fetch} = {}) => {
     if (provider === provider.Nexra) {
-        return await getNexraResponse(prompt, options);
-    }
-    else {
+        return await getNexraResponse(prompt, options, {fetch: fetch});
+    } else {
         throw new Error("Provider not found.");
     }
 };
