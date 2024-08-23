@@ -24,10 +24,9 @@ export const getDeepInfraResponse = async (prompt, options, {fetch = global.fetc
         throw new Error("Fetch is not defined globally. Please provide a polyfill.");
     }
 
-    let model = options.model;
-    let url = `${api_url}/${model}`;
+    let url = `${api_url}/${options.model}`;
 
-    let data = {prompt: prompt};
+    let data = {prompt: prompt, data: options.data};
 
     const response = await fetch(url, {
         method: "POST",
