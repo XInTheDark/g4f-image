@@ -26,7 +26,7 @@ export const getDeepInfraResponse = async (prompt, options, {fetch = global.fetc
 
     let url = `${api_url}/${options.model}`;
 
-    let data = {prompt: prompt, data: options.data};
+    let data = {prompt: prompt, ...options.data};
 
     const response = await fetch(url, {
         method: "POST",
