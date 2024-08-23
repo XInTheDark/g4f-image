@@ -15,13 +15,14 @@ Generate images for free. That's it.
   </a>
 </p>
 
-
 ## Installation
+
 ```npm install g4f-image```
 
 ## Usage
+
 ```js
-import { provider, generate } from "g4f-image";
+import {provider, generate} from "g4f-image";
 
 // syntax: await generate(prompt, provider, options);
 const base64Image = await generate("A cat", provider.Nexra,
@@ -40,10 +41,13 @@ fs.writeFileSync(filePath, base64Image, "base64");
 ```
 
 ## Models
-`model` is a parameter to be passed in `options`. However, for some providers (e.g. Prodia) that support multiple models, 
+
+`model` is a parameter to be passed in `options`. However, for some providers (e.g. Prodia) that support multiple
+models,
 you may need to pass another model parameter (see example above).
 
-### List of available models
+### Provider: Nexra
+
 - emi
 - dalle
 - dalle-mini
@@ -52,7 +56,7 @@ you may need to pass another model parameter (see example above).
 - stablediffusion-1.5
 - stablediffusion-2.1
 
-### List of available models: Prodia
+#### List of available models: Prodia
 
     3Guofeng3_v34.safetensors [50f420de]
     absolutereality_V16.safetensors [37db0fc3]
@@ -111,6 +115,11 @@ you may need to pass another model parameter (see example above).
     timeless-1.0.ckpt [7c4971d4]
     toonyou_beta6.safetensors [980f6b15]
 
+#### List of available models: ProdiaStableDiffusion
 
-### List of available models: ProdiaStableDiffusion
 **Same as `Prodia`. See above.**
+
+### Provider: DeepInfra
+
+- black-forest-labs/FLUX-1-dev
+- black-forest-labs/FLUX-1-schnell
