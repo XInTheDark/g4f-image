@@ -37,16 +37,13 @@ export const getRocksResponse = async (prompt, options, {fetch = global.fetch} =
         throw new Error(`status: ${response.status}, error: ${await response.text()}`);
     }
 
-    const binaryImage = await response.text();
-
-    /// The response will be in the following format:
-    //
-    // Content-Type: image/png
-    // (binary image data)
-
-    // convert to base64
-
-    console.log(binaryImage);
-
-    return binaryImage.split(';base64,').pop();
+    const binaryImage = await response.blob();
+    // convert the binary image to base64
+    const reader = new FileReader();
+    reader.readAsDataURL(binaryImage);
+    return new Promise((resolve) => {
+        reader.onloadend = () => {
+            resolve(reader.result);
+        };
+    });
 }
