@@ -1,9 +1,11 @@
 import {getNexraResponse} from "./Providers/nexra";
 import {getDeepInfraResponse} from "./Providers/deepinfra";
+import {getRocksResponse} from "./Providers/rocks";
 
 export const provider = {
     Nexra: "Nexra",
     DeepInfra: "DeepInfra",
+    Rocks: "Rocks",
 };
 
 export const default_provider = provider.Nexra;
@@ -13,6 +15,8 @@ export const generate = async (prompt = "", _provider = default_provider, option
         return await getNexraResponse(prompt, options, {fetch: fetch});
     } else if (_provider === provider.DeepInfra) {
         return await getDeepInfraResponse(prompt, options, {fetch: fetch});
+    } else if (_provider === provider.Rocks) {
+        return await getRocksResponse(prompt, options, {fetch: fetch});
     } else {
         throw new Error("Provider not found.");
     }

@@ -123,3 +123,14 @@ you may need to pass another model parameter (see example above).
 
 - black-forest-labs/FLUX-1-dev
 - black-forest-labs/FLUX-1-schnell
+
+### Provider: Rocks
+
+- flux
+- flux-realism
+- flux-anime
+- flux-3d
+- flux-disney
+- flux-pixel
+- flux-4o
+- any-dark
