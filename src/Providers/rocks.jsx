@@ -37,5 +37,7 @@ export const getRocksResponse = async (prompt, options, {fetch = global.fetch} =
         throw new Error(`status: ${response.status}, error: ${await response.text()}`);
     }
 
-    return await response.text();
+    const binaryImage = await response.text();
+
+    return btoa(decodeURIComponent(encodeURIComponent(binaryImage)));
 }
