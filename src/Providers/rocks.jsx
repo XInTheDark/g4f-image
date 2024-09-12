@@ -25,11 +25,12 @@ export const getRocksResponse = async (prompt, options, {fetch = global.fetch} =
         prompt: prompt,
         model: model,
     };
+    const params = new URLSearchParams(data);
+    const url = `${api_url}?${params.toString()}`;
 
-    const response = await fetch(api_url, {
+    const response = await fetch(url, {
         method: "GET",
         headers: headers,
-        body: new URLSearchParams(data),
     });
 
     if (!response.ok) {
