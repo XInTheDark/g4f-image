@@ -39,5 +39,14 @@ export const getRocksResponse = async (prompt, options, {fetch = global.fetch} =
 
     const binaryImage = await response.text();
 
-    return btoa(decodeURIComponent(encodeURIComponent(binaryImage)));
+    /// The response will be in the following format:
+    //
+    // Content-Type: image/png
+    // (binary image data)
+
+    // convert to base64
+
+    console.log(binaryImage);
+
+    return binaryImage.split(';base64,').pop();
 }
