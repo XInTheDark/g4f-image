@@ -30,7 +30,7 @@ export const getNexraResponse = async (prompt, options, { fetch = global.fetch, 
 
     let url = `${api_url}/${encodeURIComponent(id)}`;
     let ready = false;
-    let data2 = null;
+    let result2 = null;
     if (debug) console.log(url);
 
     while (!ready) {
@@ -38,25 +38,28 @@ export const getNexraResponse = async (prompt, options, { fetch = global.fetch, 
             method: "GET",
             headers: headers,
         });
-        const result2 = await response2.json();
-        data2 = result2.data;
-        if (debug) console.log(data2?.status);
+        result2 = await response2.json();
+        if (debug) console.log(result2?.status);
 
-        switch (data2?.status) {
+        if (result2?.images && result2?.images?.length > 0) {
+            break;
+        }
+
+        switch (result2?.status) {
             case "pending":
                 await sleep(500);
                 break;
             case "error":
-                throw new Error(`Error: ${data2}`);
+                throw new Error(`Error: ${result2}`);
             case "not_found":
-                throw new Error(`Error: Not found: ${data2}`);
+                throw new Error(`Error: Not found: ${result2}`);
             case "completed":
                 ready = true;
                 break;
         }
     }
 
-    const image = data2.images[0];
+    const image = result2.images[0];
     return handleResponse(image);
 }
 
