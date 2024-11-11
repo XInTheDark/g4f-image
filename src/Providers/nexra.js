@@ -9,7 +9,7 @@ export const getNexraResponse = async (prompt, options, { fetch = global.fetch }
 
     let headers = { 'Content-Type': 'application/json' };
     let model = options.model || "prodia";
-    let data = { prompt: prompt, model: model, data: options.data };
+    let data = { prompt: prompt, model: model, response: "base64", data: options.data };
 
     const response = await fetch(api_url, {
         method: "POST",
@@ -39,7 +39,7 @@ export const getNexraResponse = async (prompt, options, { fetch = global.fetch }
         const result2 = await response2.json();
         data2 = result2.data;
 
-        switch (data2.status) {
+        switch (data2?.status) {
             case "pending":
                 await sleep(500);
                 break;
