@@ -19,14 +19,14 @@ const headers = {
     "sec-ch-ua-platform": '"macOS"',
 };
 
-export const getDeepInfraResponse = async (prompt, options, {fetch = global.fetch} = {}) => {
+export const getDeepInfraResponse = async (prompt, options, { fetch = global.fetch } = {}) => {
     if (!(typeof fetch === "function")) {
         throw new Error("Fetch is not defined globally. Please provide a polyfill.");
     }
 
     let url = `${api_url}/${options.model}`;
 
-    let data = {prompt: prompt, ...options.data};
+    let data = { prompt: prompt, ...options.data };
 
     const response = await fetch(url, {
         method: "POST",
