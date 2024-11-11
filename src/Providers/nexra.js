@@ -64,8 +64,5 @@ export const getNexraResponse = async (prompt, options, { fetch = global.fetch, 
 }
 
 const handleResponse = (text) => {
-    text = text.substring(text.indexOf('{'), text.length);
-    let img = JSON.parse(text);
-    img = img.images[0].split(';base64,').pop();
-    return img;
+    return text.split(';base64,').pop();
 }
